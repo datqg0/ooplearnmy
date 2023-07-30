@@ -1,0 +1,134 @@
+#include<iostream>
+using namespace std;
+
+//class
+//constructor
+/*a.    Syntax for defining the constructor within the class
+
+        <class-name>(list-of-parameters)
+        {
+                  //constructor definition
+        }
+
+b.    Syntax for defining the constructor outside the class
+
+        <class-name>: :<class-name>(list-of-parameters)
+        {
+                //constructor definition
+        }
+c. access modifier
+ +public:All the class members declared under the public specifier will be available to everyone
+        + The data members and member functions declared as public can be accessed by other classes and functions too
+ +private:access by member function inside the class;
+            =friend function (in friend class)
+ +protected: like private class
+            +can be accessed by any subclass (derived class) of that class as well.
+d. Friend class and friend function
+1.Friend class;
+2.Friend Function;
+ */
+
+class place {
+    public:
+        string name;
+        string story;
+        int rate;
+        void display() {
+            cout<<"Name : "<<name<<endl;
+            cout<<story<<endl;
+            cout<<"Rate : "<<rate<<"*"<<endl;
+        }
+};
+class charactor {
+private:
+        string name;
+        int age;
+        int height;
+        int atk;
+        int def;
+        float power= (float) (atk+def)/2;
+        int bounty;
+public:
+        //constructor paramenterized
+        charactor (string name,int age,int height,int atk,int def,int bounty) {
+            this->name=name;
+            this->age=age;
+            this->height=height;
+            this->atk=atk;
+            this->def=def;
+            this->power=(float)(this->atk+this->def)/2;
+            this->bounty=bounty;
+        }
+        //constructor default
+        charactor () {
+            getline(cin,name);
+            cin>>age;
+            cin>>height;
+            cin>>atk;
+            cin>>def;
+            cin>>bounty;
+            power=(float ) (atk+def)/2;
+        }
+        ~charactor() {
+            cout<<"deleted"<<endl;
+        }
+        void display () {
+            cout<<"Name : "<<name<<endl;
+            cout<<"Age : "<<age<<" years old"<<endl;
+            cout<<"Height : "<<height<<"cm"<<endl;
+            cout<<"Attack : "<<atk<<endl;
+            cout<<"Defense : "<<def<<endl;
+            cout<<"Power : " <<power<<endl;
+            cout<<"Bounty : " <<bounty<<"$"<<endl;
+            cout<<endl;
+        }
+        friend void Laughtale(charactor&data);
+        friend int main();
+}instance("Tony Tony Chopper",5,5,80,89,1000);
+
+class Relationship {
+    private:
+    string name1;
+    string name2;
+    string relate;
+    public:
+    Relationship(string name1,string name2,string relate){
+        this->name1=name1;
+        this->name2=name2;
+        this->relate=relate;
+    }
+    void display () {
+        cout<<name1<<" is "<<relate<<" of "<<name2<<endl;
+    }
+    friend class Printthis;
+};
+class Printthis {
+public:
+    void display (Relationship & data) {
+        cout<<data.name1<<" is "<<data.relate<<" of "<<data.name2<<endl;
+    }
+    void modify (Relationship & data) {
+        data.relate="Enemy";
+    }
+};
+
+void Laughtale (charactor&data) {
+    cout<<data.name<<" is Prite King"<<endl;
+}
+
+int main() {
+    charactor Luffy("Money D.Luffy",19,170,80,95,100000000);
+    Luffy.display();
+    charactor Law("Trafalgar D. Water Law",26,191,78,94,5000000);
+    Law.display();
+    //copy constructor
+    charactor LuffyClone(Luffy);
+    LuffyClone.display();
+    instance.display();
+   Relationship First(Law.name,Luffy.name,"Friend");
+    Printthis P;
+    P.modify(First);
+    First.display();
+    charactor Roger ("Gol D.Roger",50,170,99,99,50000000);
+    Laughtale(Roger);
+}
