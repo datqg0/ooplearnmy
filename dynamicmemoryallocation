@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    //creat array
+    int *p=new int[10]{1,2,3,4,5,6,7,8,9,10};
+    //delete array
+    delete[] p;
+
+    p=new int[5]{1,2,3,4,5};
+    /*if we want to expanse array wev must creat new array have more element copy all old element and
+      add new element in created array and then delete old array*/
+    //creat new array
+    int * p2 =new int[10];
+    //copy
+    for (int i=0;i<5;i++) {
+        p2[i]=p[i];
+    }
+    //add
+    for(int i=5;i<10;i++) {
+        p2[i]=i;
+    }
+    for(int i=0;i<10;i++) {
+        cout<<p2[i]<<" ";
+    }
+    //delete
+    delete[] p;
+    delete[] p2;
+    cout<<endl;
+}
