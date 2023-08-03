@@ -1,0 +1,19 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    //creat and take one heap memory for one variable
+    int *p1=new int;
+    *p1=2;
+    cout<<*p1<<endl;
+    //creat and take may heap memorys for array
+    int *p2=new int[5]{1,2,3,4,5};
+    for(int i=0;i<5;i++){
+        cout<<p2[i]<<" ";
+    }
+    cout<<endl;
+    //free memory for an address of a variable
+    delete p1;
+    //free memory for an address of an array
+    delete[] p2;
+}
